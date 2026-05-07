@@ -1,0 +1,24 @@
+{
+  "description": "3-process circular deadlock. P1->R2->P2->R3->P3->R1->P1 (cycle).",
+  "expected": "DEADLOCK DETECTED",
+  "processes": [
+    {"id": "P1", "priority": 1, "cpu_time_used": 0.5},
+    {"id": "P2", "priority": 2, "cpu_time_used": 1.0},
+    {"id": "P3", "priority": 3, "cpu_time_used": 1.5}
+  ],
+  "resources": [
+    {"id": "R1", "total_instances": 1},
+    {"id": "R2", "total_instances": 1},
+    {"id": "R3", "total_instances": 1}
+  ],
+  "assignments": [
+    {"resource": "R1", "process": "P1"},
+    {"resource": "R2", "process": "P2"},
+    {"resource": "R3", "process": "P3"}
+  ],
+  "requests": [
+    {"process": "P1", "resource": "R2"},
+    {"process": "P2", "resource": "R3"},
+    {"process": "P3", "resource": "R1"}
+  ]
+}
